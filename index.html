@@ -31,7 +31,7 @@
             <br>
             <div class="row">
                 <div class="btn-group botoes col-12">
-                    <button type="button" class="btn-solid theme-primary ">Adicionar</button>
+                    <button type="button" class="btn-solid theme-primary " onclick="capturaFormulario()">Adicionar</button>
                     
                 </div>
             </div>
@@ -48,21 +48,32 @@
 
         </form>
         <br>
+        
+            <br>
+        </p>    
+
         <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Valor</th>
+                <thead>
+                     <tr>
+                    <th scope="col">ID </th>
+                    <th scope="col">Nome </th>
+                    <th scope="col">Valor </th>
                 </tr>
-            </thead>
-            <tbody>
-                <!-- <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                </tr> -->
-            </tbody>
+                </thead>
+                <tbody id="conteudo-tabela">
+                    
+                </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Total:</td>
+                    </tr>
+
+                </tfoot>
+           
+                
         </table>
         <br>
         <div class="row">
@@ -71,5 +82,33 @@
             </div>
         </div>
     </main>
+    <script>
+        function capturaFormulario(){
+            let nome = document.querySelector('#nome')
+            let valor = document.querySelector('#valor')
+            let tbody = document.querySelector('#conteudo-tabela')
+
+            let produto = {
+                nome: nome.value,
+                valor: valor.value
+
+            }
+
+            let tr = document.createElement('tr')
+            let tdId = document.createElement('td')
+            let tdNome = document.createElement('td')
+            let tdValor = document.createElement('td')
+
+            tdNome.textContent = produto.nome
+            tdValor.textContent = produto.valor
+
+            tr.append(tdId)
+            tr.append(tdNome)
+            tr.append(tdValor)
+
+            tbody.append(tr)
+            
+        }
+    </script>
 </body>
 </html>
