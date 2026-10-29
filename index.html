@@ -14,24 +14,24 @@
 <body>
     <main class="container">
         <h1>Cadastro de Produtos</h1>
-        <form action="#" method="post">
+        <form action="#" method="post" id="cadastroProduto">
             
             <div class="row">
                 
                 <div class="form-field col-6">
                     <label for="nome" class="form-label">Nome</label>
-                    <input type="text" name="nome" id="nome" class="form-control" >
+                    <input type="text" name="nome" id="nome" class="form-control" required>
                 </div>
                 
                 <div class="form-field col-6">
                     <label for="valor" class="form-label">Valor</label>
-                    <input type="number" class="form-control" name="valor" id="valor" placeholder="0.00">
+                    <input type="number" class="form-control" name="valor" id="valor" placeholder="0.00" required>
                 </div>
             </div>
             <br>
             <div class="row">
                 <div class="btn-group botoes col-12">
-                    <button type="button" class="btn-solid theme-primary " onclick="capturaFormulario()">Adicionar</button>
+                    <button type="submit" class="btn-solid theme-primary">Adicionar</button>
                     
                 </div>
             </div>
@@ -58,6 +58,7 @@
                     <th scope="col">ID </th>
                     <th scope="col">Nome </th>
                     <th scope="col">Valor </th>
+                    <th scope="col">Editar </th>
                 </tr>
                 </thead>
                 <tbody id="conteudo-tabela">
@@ -68,7 +69,7 @@
                     <tr>
                         <td></td>
                         <td></td>
-                        <td>Total:</td>
+                        <td>Valor Total: <span></span></td>
                     </tr>
 
                 </tfoot>
@@ -83,7 +84,23 @@
         </div>
     </main>
     <script>
-        function capturaFormulario(){
+        let form = document.querySelector('#cadastroProduto')
+        form.addEventListener('submit',function(event) {
+
+        
+            event.preventDefault();
+            console.log(event);
+            capturaFormulario()
+        })
+
+            let botaoSubmit = document.querySelector('botaoSubmit')
+            form.addEventListener('mouseover', function(){
+                console.log('oi')
+            })
+
+            function capturaFormulario() {
+
+
             let nome = document.querySelector('#nome')
             let valor = document.querySelector('#valor')
             let tbody = document.querySelector('#conteudo-tabela')
@@ -99,12 +116,17 @@
             let tdNome = document.createElement('td')
             let tdValor = document.createElement('td')
 
+            let tdEditar = document.createElement('td')
+
             tdNome.textContent = produto.nome
             tdValor.textContent = produto.valor
+            tdEditar.textContent = 'Alterar - Remover'
 
             tr.append(tdId)
             tr.append(tdNome)
             tr.append(tdValor)
+            tr.append(tdEditar)
+            
 
             tbody.append(tr)
             
